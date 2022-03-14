@@ -92,10 +92,7 @@ function pedidos_cpt() {
 	register_post_type( 'pedidos', $args );
 
 }
-add_action( 'init', 'pedidos_cpt', 0 );
 
-/*function pedidos_tax() {
-    register_taxonomy();
-}*/
+add_action( 'init', 'pedidos_cpt', 0 ); 
 
 ?>

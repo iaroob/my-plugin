@@ -1,12 +1,12 @@
 <?php
 
-function productos_cpt() {
+function productosVar_cpt() {
 
 	$labels = array(
-		'name'                  => _x( 'Productos', 'Post Type General Name', 'text_domain' ),
-		'singular_name'         => _x( 'Producto', 'Post Type Singular Name', 'text_domain' ),
-		'menu_name'             => __( 'Productos', 'text_domain' ),
-		'name_admin_bar'        => __( 'Productos', 'text_domain' ),
+		'name'                  => _x( 'Productos Variantes', 'Post Type General Name', 'text_domain' ),
+		'singular_name'         => _x( 'Producto Variante', 'Post Type Singular Name', 'text_domain' ),
+		'menu_name'             => __( 'Productos Variantes', 'text_domain' ),
+		'name_admin_bar'        => __( 'Productos Variantes', 'text_domain' ),
 		'archives'              => __( 'Archivos de items', 'text_domain' ),
 		'attributes'            => __( 'Atributos de items', 'text_domain' ),
 		'parent_item_colon'     => __( 'Producto', 'text_domain' ),
@@ -32,7 +32,7 @@ function productos_cpt() {
 		'filter_items_list'     => __( 'Filtrar lista de items', 'text_domain' ),
 	);
 	$args = array(
-		'label'                 => __( 'Producto', 'text_domain' ),
+		'label'                 => __( 'Producto Variante', 'text_domain' ),
 		'description'           => __( 'Los productos', 'text_domain' ),
 		'labels'                => $labels,
 		'supports'              => array( 'title', 'editor', 'thumbnail', 'comments', 'revisions', 'custom-fields', 'page-attributes' ),
@@ -51,9 +51,9 @@ function productos_cpt() {
 		'publicly_queryable'    => true,
 		'capability_type'       => 'page',
 	);
-	register_post_type( 'productos', $args );
+	register_post_type( 'productosVar', $args );
 
 }
-add_action( 'init', 'productos_cpt', 0 );
+add_action( 'init', 'productosVar_cpt', 0 );
 
 ?>

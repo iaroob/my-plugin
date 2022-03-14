@@ -74,7 +74,7 @@ function pedidos_cpt() {
 		'description'           => __( 'Pedidos', 'text_domain' ),
 		'labels'                => $labels,
 		'supports'              => array( 'title', 'editor', 'thumbnail', 'comments', 'revisions', 'custom-fields', 'page-attributes' ),
-		'taxonomies'            => array( 'category', 'post_tag', 'estado           ' ),
+		'taxonomies'            => array( 'category', 'post_tag', 'estado' ),
 		'hierarchical'          => false,
 		'public'                => true,
 		'show_ui'               => true,

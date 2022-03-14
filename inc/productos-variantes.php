@@ -42,7 +42,9 @@ add_action( 'init', 'registroTaxonomia', 0 );
 
 
 function productosVar_cpt() {
-	$taxonomias=file('C:\xampp\htdocs\test\wp-content\plugins\my-plugin\inc\taxonomias.txt');
+	$lines=file('C:\xampp\htdocs\test\wp-content\plugins\my-plugin\inc\taxonomias.txt');
+	$predef = array( 'category', 'post_tag' );
+	$taxonomias = array_merge( $predef, $lines);
 
 	$labels = array(
 		'name'                  => _x( 'Productos Variantes', 'Post Type General Name', 'text_domain' ),
@@ -78,7 +80,7 @@ function productosVar_cpt() {
 		'description'           => __( 'Los productos', 'text_domain' ),
 		'labels'                => $labels,
 		'supports'              => array( 'title', 'editor', 'thumbnail', 'comments', 'revisions', 'custom-fields', 'page-attributes' ),
-		'taxonomies'            => array( 'category', 'post_tag' )+$taxonomias,  
+		'taxonomies'            => $taxonomias,  
 		'hierarchical'          => false,
 		'public'                => true,
 		'show_ui'               => true,

@@ -1,1 +1,1 @@
-Plugin for WordPress
+eComemrce plugin for WordPress

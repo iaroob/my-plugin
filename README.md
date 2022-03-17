@@ -1,1 +1,1 @@
-Plugin for WordPress
+eCommerce plugin for WordPress

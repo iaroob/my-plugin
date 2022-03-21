@@ -1,5 +1,5 @@
 <?php
-
+/*
 function registroTaxonomia() {
 	$taxonomias=file('C:\xampp\htdocs\test\wp-content\plugins\my-plugin\inc\taxonomias.txt');
 //	$taxonomias = array("color");
@@ -99,5 +99,5 @@ function productosVar_cpt() {
 
 }
 add_action( 'init', 'productosVar_cpt', 0 );
-
+*/
 ?>

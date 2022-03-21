@@ -37,6 +37,7 @@ function atributos() {
 
 }
 add_action( 'init', 'atributos', 0 );
+
 function productos_cpt() {
 
 	$labels = array(
@@ -73,7 +74,7 @@ function productos_cpt() {
 		'description'           => __( 'Los productos', 'text_domain' ),
 		'labels'                => $labels,
 		'supports'              => array( 'title', 'editor', 'thumbnail', 'comments', 'revisions', 'custom-fields', 'page-attributes' ),
-		'taxonomies'            => array( 'category', 'post_tag', 'atributos'),
+		'taxonomies'            => array( 'category', 'post_tag', 'atributo' ),
 		'hierarchical'          => false,
 		'public'                => true,
 		'show_ui'               => true,
@@ -93,40 +94,43 @@ function productos_cpt() {
 }
 add_action( 'init', 'productos_cpt', 0 );
 
-/*
-function wporg_add_custom_box() {
-	$screens = [ 'post', 'wporg_cpt' ];
-	foreach ( $screens as $screen ) {
-			add_meta_box(
-					'wporg_box_id',                 // Unique ID
-					'Custom Meta Box Title',      // Box title
-					'wporg_custom_box_html',  // Content callback, must be of type callable
-					$screen                            // Post type
-			);
-	}
-}
-add_action( 'add_meta_boxes', 'wporg_add_custom_box' );
 
-function wporg_custom_box_html( $post ) {
+function productos_add_metabox() {
+			add_meta_box(
+					'productos_box_id',                 // Unique ID
+					'Información del producto',      // Box title
+					'productos_metabox_html',  // Content callback, must be of type callable
+			);
+}
+add_action( 'add_meta_boxes', 'productos_add_metabox' );
+
+function productos_metabox_html( $post ) {
+	$atributos = get_terms( array(
+		'taxonomy' => 'atributo',
+		'hide_empty' => false,
+) );
     ?>
-    <label for="wporg_field">Description for this field</label>
-    <select name="wporg_field" id="wporg_field" class="postbox">
-        <option value="">Select something...</option>
-        <option value="something">Something</option>
-        <option value="else">Else</option>
+    <label for="precio_field">Precio</label>
+		<input type="text" id="precio_field" name="precio_field"><br>
+		<label for="atributos_field">Atributos</label> 
+		<select name="atributos_field" id="atributos_field">
+        <?php
+				foreach( $atributos as $atributo) {
+					echo '<option value="'.$atributo->slug.'">'.$atributo->name.'</option>';
+				}
+				?>
     </select>
     <?php
 }
-
-function wporg_save_postdata( $post_id ) {
-    if ( array_key_exists( 'wporg_field', $_POST ) ) {
+function productos_save_postdata( $post_id ) {
+    if ( array_key_exists( 'precio_field', $_POST ) ) {
         update_post_meta(
             $post_id,
-            '_wporg_meta_key',
-            $_POST['wporg_field']
+            '_precio_meta_key',
+            $_POST['precio_field']
         );
     }
 }
-add_action( 'save_post', 'wporg_save_postdata' );
-*/
+add_action( 'save_post', 'productos_save_postdata' );
+
 ?>

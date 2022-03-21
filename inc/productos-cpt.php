@@ -98,7 +98,7 @@ add_action( 'init', 'productos_cpt', 0 );
 function productos_add_metabox() {
 			add_meta_box(
 					'productos_box_id',                 // Unique ID
-					'Información del producto',      // Box title
+					'Producto Simple',      // Box title
 					'productos_metabox_html',  // Content callback, must be of type callable
 			);
 }
@@ -111,26 +111,71 @@ function productos_metabox_html( $post ) {
 ) );
     ?>
     <label for="precio_field">Precio</label>
-		<input type="text" id="precio_field" name="precio_field"><br>
+		<input type="text" id="precio_field" name="precio_field"><br><br>
+		<label for="codigo_field">Codigo</label>
+		<input type="text" id="codigo_field" name="codigo_field"><br><br>
 		<label for="atributos_field">Atributos</label> 
 		<select name="atributos_field" id="atributos_field">
+			<option>--Selecciona--</option>
         <?php
 				foreach( $atributos as $atributo) {
 					echo '<option value="'.$atributo->slug.'">'.$atributo->name.'</option>';
 				}
 				?>
-    </select>
+    </select> <br><br>
+		<textarea id="atributos_valores" name="atributos_valores" width="100" placeholder="Introduce valores, separados por '|'" rows="4" cols="50"></textarea>
     <?php
 }
 function productos_save_postdata( $post_id ) {
     if ( array_key_exists( 'precio_field', $_POST ) ) {
         update_post_meta(
             $post_id,
-            '_precio_meta_key',
-            $_POST['precio_field']
+            'atributos_field',
+            $_POST['atributos_field']
         );
     }
 }
 add_action( 'save_post', 'productos_save_postdata' );
 
+function productosvar_add_metabox() {
+	add_meta_box(
+			'productosvar_box_id',                 
+			'Producto Variante',      
+			'productosvar_metabox_html',  
+	);
+}
+add_action( 'add_meta_boxes', 'productosvar_add_metabox' );
+
+function productosvar_metabox_html( $post ) {
+$atributos = get_terms( array(
+'taxonomy' => 'atributo',
+'hide_empty' => false,
+) );
+?>
+<label for="preciovar_field">Precio</label>
+<input type="text" id="preciovar_field" name="preciovar_field"><br><br>
+<label for="codigovar_field">Codigo</label>
+<input type="text" id="codigovar_field" name="codigovar_field"><br><br>
+<label for="atributosvar_field">Atributos</label> 
+<select multiple name="atributosvar_field" id="atributosvar_field">
+	<option>--Selecciona--</option>
+		<?php
+		foreach( $atributos as $atributo) {
+			echo '<option value="'.$atributo->slug.'">'.$atributo->name.'</option>';
+		}
+		?>
+   </select> <br><br>
+		<textarea id="atributos_valores_primero" name="atributos_valores_primero" width="100" placeholder="Introduce valores, separados por '|'" rows="4" cols="50"></textarea>
+<?php
+}
+function productosvar_save_postdata( $post_id ) {
+if ( array_key_exists( 'preciovar_field', $_POST ) ) {
+		update_post_meta(
+				$post_id,
+				'atributosvar_field',
+				$_POST['atributosvar_field']
+		);
+}
+}
+add_action( 'save_post', 'productosvar_save_postdata' );
 ?>

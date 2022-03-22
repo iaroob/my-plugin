@@ -11,4 +11,5 @@
 require __DIR__ . '/inc/productos-cpt.php';
 require __DIR__ . '/inc/pedidos-cpt.php';
 require __DIR__ . '/inc/productos-variantes.php';
+require __DIR__ . '/inc/productos-metabox.php';
 ?>

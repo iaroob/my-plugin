@@ -79,7 +79,7 @@ function productos_cpt() {
 		'public'                => true,
 		'show_ui'               => true,
 		'show_in_menu'          => true,
-		'menu_position'         => 5,
+		//'menu_position'         => 5,
 		'menu_icon'             => 'dashicons-products',
 		'show_in_admin_bar'     => true,
 		'show_in_nav_menus'     => true,
@@ -90,8 +90,6 @@ function productos_cpt() {
 		'capability_type'       => 'page',
 	);
 	register_post_type( 'productos', $args );
-
 }
 add_action( 'init', 'productos_cpt', 0 );
-
 ?>
